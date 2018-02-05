@@ -6,8 +6,9 @@
 	Description: Simple site backup of your database and uploads directory to Google Drive
 	Author: Sole Graphics
 	Author URI: http://www.solegraphics.com/
-	Version: 0.1
-	License:
+	Version: 1
+	License: MIT
+	Contributors: Ben Greene,
  */
 
 // Need to allow file uploads.
