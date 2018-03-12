@@ -7,8 +7,8 @@ class Sole_Schedule_Controller {
 
 	private $google_controller;
 
-	public function __construct( $google_controller ) {
-		$this->google_controller = $google_controller;
+	public function __construct() {
+		$this->google_controller = Google_Controller::get_instance();
 
 		// Need to add a weekly CRON job option
 		add_filter( 'cron_schedules', array( $this, 'add_weekly_cron_job_option' ) );

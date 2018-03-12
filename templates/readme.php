@@ -1,5 +1,5 @@
 <div class="wrap">
-	<h1>Dead Simple Google Drive Backups - Help</h1>
+	<h1>Dead Simple Google Drive Backups</h1>
 	<hr/>
 	<h2>Purpose of the Plugin</h2>
 	<p>This plugin is meant to make automated backing up of your uploads directory and WordPress database to Google Drive as simple as possible. Backups are automatically done by the plugin, and you are notified after backups are made.</p><p> Essentially, after initial setup, you can forget about the plugin!</p>

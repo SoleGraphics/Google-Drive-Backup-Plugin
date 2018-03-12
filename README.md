@@ -2,7 +2,7 @@
 
 ## Development Dependencies
 
-This plugin uses composer! You will to run `composer install` in the plugin directory before you can use it! (This is a developer repo, not a production repo).
+This plugin uses composer! You will need to run `composer install` in the plugin directory before you can use it! (ATM this is a developer repo, not a production repo).
 
 ## Connecting to Google Drive
 

@@ -43,6 +43,7 @@ class Admin_Interface_Controller {
 	}
 
 	public function display_settings_page() {
+		$sole_google_controller = Google_Controller::get_instance();
 		include plugin_dir_path( __DIR__ ) . 'templates/settings-form.php';
 	}
 

@@ -87,6 +87,49 @@ class Sole_WP_Files_Controller {
 		);
 	}
 
+	/**
+	 * ---------------------------------------------------------
+	 * Manual Downloads
+	 * ---------------------------------------------------------
+	 */
+	function download_db_dump() {
+		$file_info = $this->create_db_dump();
+		$this->download_generic_file( $file_info );
+	}
+
+	function download_uploads_dump() {
+		$file_info = $this->get_wp_uploads_zip();
+		$this->download_generic_file( $file_info );
+	}
+
+	// Download a single file
+	// (script should call exit after cleanup)
+	function download_generic_file( $file_info ) {
+		if( false === $file_info ) {
+			return;
+		}
+
+		$download_link = $file_info['path'] . $file_info['name'];
+
+		// Download the file, need the file URL to force the download.
+		header('Content-Type: application/octet-stream');
+		header("Content-Transfer-Encoding: Binary");
+		header("Content-disposition: attachment; filename=\"" . basename($file_info['name']) . "\"");
+		ob_clean();
+    	flush();
+		readfile($download_link);
+
+		// Delete the file and exit immediately (since we set headers for downloading)
+		unlink( $download_link );
+		exit();
+	}
+
+	/**
+	 * ---------------------------------------------------------
+	 * Helpers
+	 * ---------------------------------------------------------
+	 */
+
 	// Checks if current OS is WIN
 	// Returns the correct terminal command.
 	private function get_os_command_type() {

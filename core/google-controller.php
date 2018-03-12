@@ -9,7 +9,15 @@ class Google_Controller {
 	private $drive;
 	private $logger;
 
-	public function __construct() {
+	private static $instance;
+	public static function get_instance() {
+		if( null === self::$instance ) {
+			self::$instance = new Google_Controller();
+		}
+		return self::$instance;
+	}
+
+	private function __construct() {
 		$this->file_controller = new Sole_WP_Files_Controller();
 		$this->logger          = Sole_Google_Logger::get_instance();
 
@@ -74,11 +82,11 @@ class Google_Controller {
 	  		'uploadType' => 'multipart',
 	  		'fields'     => 'id'));
 
-		$this->give_user_file_prmission( $file );
+		$this->give_user_file_permission( $file );
 	}
 
 	// Need to give the admin permissions to access the file uploaded.
-	public function give_user_file_prmission( $file ) {
+	public function give_user_file_permission( $file ) {
 		// Couuld be a Guzzle Object. No good.
 		if( ! isset( $file->id ) ) {
 			return;
@@ -114,7 +122,7 @@ class Google_Controller {
 	public function get_drive_quota() {
 		$this->setup_google_connection();
 
-		// For use in displaying useage (dont want to display a MASSIVE number)
+		// For use in displaying useage (dont want to display in bytes)
 		$b_in_mb = 1048576;
 
 		try{

@@ -1,11 +1,11 @@
-<?php global $sole_google_controller; ?>
 <div class="wrap">
-	<h1>Dead Simple Google Drive Backups - Settings</h1>
+	<h1>Dead Simple Google Drive Backups</h1>
 	<hr/>
 	<div class="quota">
 		<h2>Info</h2>
 		<?php echo $sole_google_controller->get_drive_quota(); ?>
 	</div>
+	<hr/>
 	<form method="POST" action="options.php" enctype="multipart/form-data">
 		<?php settings_fields( self::SETTINGS_GROUP ); ?>
 		<?php do_settings_sections( 'sole-settings-page' ); ?>
@@ -55,11 +55,21 @@
 		</table>
 		<?php submit_button(); ?>
 	</form>
+	<hr/>
 	<h2>Extras</h2>
 	<form method="POST" action="">
 		<input type="hidden" name="manual-sole-google-backup-trigger" value="true" />
 		<?php submit_button( 'Backup Files & Database' ); ?>
 	</form>
+	<form method="POST" action="">
+		<input type="hidden" name="manual-sole-google-download-db-dump" value="true" />
+		<?php submit_button( 'Download Database Dump' ); ?>
+	</form>
+	<form method="POST" action="">
+		<input type="hidden" name="manual-sole-google-download-uploads-zip" value="true" />
+		<?php submit_button( 'Download Uploads Directory' ); ?>
+	</form>
+	<hr/>
 	<form method="POST" action="">
 		<input type="hidden" name="manual-sole-google-clear-drive-trigger" value="true" />
 		<?php submit_button( 'Clear Drive.' ); ?>
