@@ -17,7 +17,11 @@ class Admin_Interface_Controller {
 		'daily', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday',
 	);
 
+	private $table_controller;
+
 	public function __construct() {
+		$this->table_controller = Sole_Google_Logger::get_instance();
+
 		// Add the admin views
 		add_action( 'admin_menu', array( $this, 'add_admin_menu') );
 		add_action( 'admin_init', array( $this, 'register_plugin_settings') );
@@ -48,6 +52,21 @@ class Admin_Interface_Controller {
 	}
 
 	public function display_logs() {
+		// Check if a page is set
+		$page           = isset( $_GET['page_to_display'] ) ? $_GET['page_to_display']: 1;
+		$page 			= max( $page, 1 );
+		$type			= isset( $_GET['msg_type'] ) ? $_GET['msg_type'] : '';
+
+		// Get sender information
+		$sender  = isset( $_GET['sender'] ) ? $_GET['sender'] : '';
+		$senders = $this->table_controller->get_log_senders();
+		$senders = $this->table_controller->simplify_array( $senders, 'log_sender' );
+
+		// Log results to display to the user
+		$logs = $this->table_controller->get_log_messages( $page, $type, $sender );
+
+		// Get the number of pages
+		$total_pages = ceil( $this->table_controller->get_max_number_results() / $this->table_controller->num_to_display );
 		include plugin_dir_path( __DIR__ ) . 'templates/log-file.php';
 	}
 
