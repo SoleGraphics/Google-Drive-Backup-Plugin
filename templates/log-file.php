@@ -1,7 +1,7 @@
 <div class="wrap">
     <h1>Error Logs</h1>
     <form method="GET" action="">
-        <input type="hidden" name="page" value="sole-settings-page-logs" /><br/>
+        <input type="hidden" name="page" value="google_backups_settings_page-logs" /><br/>
         <table>
             <tr>
                 <td><label>Message Types</label></td>

@@ -46,7 +46,7 @@
 			<tr>
 				<td>Uploads Backup Frequency</td>
 				<td><select name="sole_google_uploads_frequency">
-					<?php $selected = get_option( 'sole_google_db_frequency' ); ?>
+					<?php $selected = get_option( 'sole_google_uploads_frequency' ); ?>
 					<?php foreach( $this->backup_options as $option ): ?>
 						<option value="<?php echo $option; ?>" <?php if($option == $selected){ echo 'selected="selected"'; } ?>><?php echo $option; ?></option>
 					<?php endforeach; ?>

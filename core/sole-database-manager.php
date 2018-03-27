@@ -142,8 +142,7 @@ class Database_Table_Manager {
     protected function str_lreplace( $search, $replace, $subject ) {
         $pos = strrpos($subject, $search);
 
-        if($pos !== false)
-        {
+        if($pos !== false) {
             $subject = substr_replace($subject, $replace, $pos, strlen($search));
         }
 
